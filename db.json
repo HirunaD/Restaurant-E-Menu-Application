@@ -1,0 +1,801 @@
+{
+  "restaurant": {
+    "name": "Delicious Bites",
+    "tagline": "Fresh • Flavorful • Fast",
+    "description": "Experience the finest flavors crafted with passion. Fresh ingredients, authentic recipes, unforgettable taste.",
+    "openingHours": "Mon-Sun: 10:00 AM - 10:00 PM",
+    "contact": {
+      "phone": "(555) 123-4567",
+      "email": "hello@deliciousbites.com",
+      "address": "123 Food Street, Cuisine City, CC 12345"
+    }
+  },
+  "categories": [
+    {
+      "id": "appetizers",
+      "name": "Appetizers",
+      "description": "Start your meal with our delicious appetizers",
+      "icon": "🥗"
+    },
+    {
+      "id": "mains",
+      "name": "Main Course",
+      "description": "Hearty and satisfying main dishes",
+      "icon": "🍖"
+    },
+    {
+      "id": "desserts",
+      "name": "Desserts",
+      "description": "Sweet treats to end your meal",
+      "icon": "🍰"
+    },
+    {
+      "id": "beverages",
+      "name": "Beverages",
+      "description": "Refreshing drinks and beverages",
+      "icon": "🥤"
+    }
+  ],
+  "menuItems": [
+    {
+      "id": 1,
+      "name": "Crispy Spring Rolls",
+      "description": "Golden-fried spring rolls filled with vegetables and served with sweet chili sauce.",
+      "price": 8.99,
+      "image": "https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=300&fit=crop",
+      "category": "appetizers",
+      "dietary": ["vegetarian"],
+      "spicyLevel": 1,
+      "popular": true,
+      "available": true,
+      "preparationTime": 10,
+      "customizations": {
+        "sizes": [
+          { "name": "Regular (4 pcs)", "priceModifier": 0 },
+          { "name": "Large (8 pcs)", "priceModifier": 6.00 }
+        ],
+        "addOns": [
+          { "name": "Extra Dipping Sauce", "price": 1.00 },
+          { "name": "Peanut Sauce", "price": 1.50 }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "name": "Buffalo Chicken Wings",
+      "description": "Crispy chicken wings tossed in spicy buffalo sauce with blue cheese dip.",
+      "price": 12.99,
+      "image": "https://images.unsplash.com/photo-1608039829572-9b1234ef0456?w=400&h=300&fit=crop",
+      "category": "appetizers",
+      "dietary": ["gluten-free"],
+      "spicyLevel": 3,
+      "popular": true,
+      "available": true,
+      "preparationTime": 15,
+      "customizations": {
+        "sizes": [
+          { "name": "6 Wings", "priceModifier": 0 },
+          { "name": "12 Wings", "priceModifier": 8.00 }
+        ],
+        "addOns": [
+          { "name": "Ranch Dip", "price": 1.50 },
+          { "name": "Extra Blue Cheese", "price": 1.50 }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "name": "Bruschetta",
+      "description": "Toasted bread topped with fresh tomatoes, basil, garlic, and olive oil.",
+      "price": 7.49,
+      "image": "https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?w=400&h=300&fit=crop",
+      "category": "appetizers",
+      "dietary": ["vegetarian", "vegan"],
+      "spicyLevel": 0,
+      "popular": false,
+      "available": true,
+      "preparationTime": 8
+    },
+    {
+      "id": 4,
+      "name": "Loaded Nachos",
+      "description": "Tortilla chips topped with melted cheese, jalapeños, sour cream, and guacamole.",
+      "price": 10.99,
+      "image": "https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?w=400&h=300&fit=crop",
+      "category": "appetizers",
+      "dietary": ["vegetarian", "gluten-free"],
+      "spicyLevel": 2,
+      "popular": true,
+      "available": true,
+      "preparationTime": 12,
+      "customizations": {
+        "addOns": [
+          { "name": "Extra Guacamole", "price": 2.50 },
+          { "name": "Grilled Chicken", "price": 4.00 },
+          { "name": "Ground Beef", "price": 4.00 }
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "name": "Garlic Shrimp",
+      "description": "Succulent shrimp sautéed in garlic butter with fresh herbs.",
+      "price": 14.99,
+      "image": "https://images.unsplash.com/photo-1599084993091-1cb5c0721cc6?w=400&h=300&fit=crop",
+      "category": "appetizers",
+      "dietary": ["gluten-free"],
+      "spicyLevel": 1,
+      "popular": true,
+      "available": true,
+      "preparationTime": 15
+    },
+    {
+      "id": 6,
+      "name": "Mozzarella Sticks",
+      "description": "Breaded mozzarella sticks served with marinara sauce.",
+      "price": 8.49,
+      "image": "https://images.unsplash.com/photo-1531749668029-2db88e27a6dc?w=400&h=300&fit=crop",
+      "category": "appetizers",
+      "dietary": ["vegetarian"],
+      "spicyLevel": 0,
+      "popular": false,
+      "available": true,
+      "preparationTime": 10
+    },
+    {
+      "id": 7,
+      "name": "Soup of the Day",
+      "description": "Ask your server about today's freshly made soup special.",
+      "price": 5.99,
+      "image": "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400&h=300&fit=crop",
+      "category": "appetizers",
+      "dietary": ["vegetarian"],
+      "spicyLevel": 0,
+      "popular": false,
+      "available": true,
+      "preparationTime": 5
+    },
+    {
+      "id": 8,
+      "name": "Caesar Salad",
+      "description": "Crisp romaine lettuce with caesar dressing, croutons, and parmesan.",
+      "price": 9.99,
+      "image": "https://images.unsplash.com/photo-1546793665-c74683f339c1?w=400&h=300&fit=crop",
+      "category": "appetizers",
+      "dietary": ["vegetarian"],
+      "spicyLevel": 0,
+      "popular": false,
+      "available": true,
+      "preparationTime": 8,
+      "customizations": {
+        "addOns": [
+          { "name": "Grilled Chicken", "price": 4.00 },
+          { "name": "Grilled Shrimp", "price": 6.00 },
+          { "name": "Bacon Bits", "price": 2.00 }
+        ]
+      }
+    },
+    {
+      "id": 9,
+      "name": "Stuffed Mushrooms",
+      "description": "Button mushrooms stuffed with cream cheese, herbs, and breadcrumbs.",
+      "price": 9.49,
+      "image": "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400&h=300&fit=crop",
+      "category": "appetizers",
+      "dietary": ["vegetarian"],
+      "spicyLevel": 0,
+      "popular": false,
+      "available": true,
+      "preparationTime": 15
+    },
+    {
+      "id": 10,
+      "name": "Spinach Artichoke Dip",
+      "description": "Creamy spinach and artichoke dip served with tortilla chips.",
+      "price": 10.49,
+      "image": "https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?w=400&h=300&fit=crop",
+      "category": "appetizers",
+      "dietary": ["vegetarian", "gluten-free"],
+      "spicyLevel": 0,
+      "popular": true,
+      "available": true,
+      "preparationTime": 12
+    },
+    {
+      "id": 11,
+      "name": "Calamari Fritti",
+      "description": "Lightly breaded and fried calamari rings with lemon aioli.",
+      "price": 13.99,
+      "image": "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&h=300&fit=crop",
+      "category": "appetizers",
+      "dietary": [],
+      "spicyLevel": 0,
+      "popular": false,
+      "available": true,
+      "preparationTime": 12
+    },
+    {
+      "id": 12,
+      "name": "Hummus Platter",
+      "description": "Creamy hummus served with warm pita bread and fresh vegetables.",
+      "price": 8.99,
+      "image": "https://images.unsplash.com/photo-1577805947697-89e18249d767?w=400&h=300&fit=crop",
+      "category": "appetizers",
+      "dietary": ["vegetarian", "vegan", "gluten-free"],
+      "spicyLevel": 0,
+      "popular": false,
+      "available": true,
+      "preparationTime": 5
+    },
+    {
+      "id": 13,
+      "name": "Grilled Ribeye Steak",
+      "description": "12oz premium ribeye steak grilled to perfection, served with mashed potatoes and seasonal vegetables.",
+      "price": 34.99,
+      "image": "https://images.unsplash.com/photo-1600891964092-4316c288032e?w=400&h=300&fit=crop",
+      "category": "mains",
+      "dietary": ["gluten-free"],
+      "spicyLevel": 0,
+      "popular": true,
+      "available": true,
+      "preparationTime": 25,
+      "customizations": {
+        "sizes": [
+          { "name": "8oz", "priceModifier": -8.00 },
+          { "name": "12oz", "priceModifier": 0 },
+          { "name": "16oz", "priceModifier": 10.00 }
+        ],
+        "addOns": [
+          { "name": "Garlic Butter", "price": 2.00 },
+          { "name": "Blue Cheese Crumbles", "price": 3.00 },
+          { "name": "Sautéed Mushrooms", "price": 3.50 }
+        ]
+      }
+    },
+    {
+      "id": 14,
+      "name": "Grilled Salmon",
+      "description": "Fresh Atlantic salmon fillet with lemon dill sauce, served with rice pilaf.",
+      "price": 26.99,
+      "image": "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&h=300&fit=crop",
+      "category": "mains",
+      "dietary": ["gluten-free"],
+      "spicyLevel": 0,
+      "popular": true,
+      "available": true,
+      "preparationTime": 20
+    },
+    {
+      "id": 15,
+      "name": "Chicken Parmesan",
+      "description": "Breaded chicken breast topped with marinara sauce and melted mozzarella, served with spaghetti.",
+      "price": 18.99,
+      "image": "https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?w=400&h=300&fit=crop",
+      "category": "mains",
+      "dietary": [],
+      "spicyLevel": 0,
+      "popular": true,
+      "available": true,
+      "preparationTime": 25
+    },
+    {
+      "id": 16,
+      "name": "BBQ Baby Back Ribs",
+      "description": "Slow-cooked baby back ribs glazed with smoky BBQ sauce, served with coleslaw and fries.",
+      "price": 28.99,
+      "image": "https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=300&fit=crop",
+      "category": "mains",
+      "dietary": ["gluten-free"],
+      "spicyLevel": 1,
+      "popular": true,
+      "available": true,
+      "preparationTime": 30,
+      "customizations": {
+        "sizes": [
+          { "name": "Half Rack", "priceModifier": -8.00 },
+          { "name": "Full Rack", "priceModifier": 0 }
+        ]
+      }
+    },
+    {
+      "id": 17,
+      "name": "Shrimp Alfredo",
+      "description": "Fettuccine pasta tossed in creamy alfredo sauce with sautéed shrimp.",
+      "price": 22.99,
+      "image": "https://images.unsplash.com/photo-1645112411341-6c4fd023714a?w=400&h=300&fit=crop",
+      "category": "mains",
+      "dietary": [],
+      "spicyLevel": 0,
+      "popular": false,
+      "available": true,
+      "preparationTime": 20
+    },
+    {
+      "id": 18,
+      "name": "Vegetable Stir Fry",
+      "description": "Fresh seasonal vegetables stir-fried in a savory ginger soy sauce, served with jasmine rice.",
+      "price": 14.99,
+      "image": "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400&h=300&fit=crop",
+      "category": "mains",
+      "dietary": ["vegetarian", "vegan", "gluten-free"],
+      "spicyLevel": 1,
+      "popular": false,
+      "available": true,
+      "preparationTime": 15,
+      "customizations": {
+        "addOns": [
+          { "name": "Tofu", "price": 3.00 },
+          { "name": "Chicken", "price": 4.00 },
+          { "name": "Shrimp", "price": 6.00 }
+        ]
+      }
+    },
+    {
+      "id": 19,
+      "name": "Classic Burger",
+      "description": "Juicy beef patty with lettuce, tomato, onion, pickles, and special sauce on a brioche bun.",
+      "price": 15.99,
+      "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=300&fit=crop",
+      "category": "mains",
+      "dietary": [],
+      "spicyLevel": 0,
+      "popular": true,
+      "available": true,
+      "preparationTime": 18,
+      "customizations": {
+        "addOns": [
+          { "name": "Bacon", "price": 2.50 },
+          { "name": "Cheese", "price": 1.50 },
+          { "name": "Avocado", "price": 2.00 },
+          { "name": "Fried Egg", "price": 1.50 }
+        ]
+      }
+    },
+    {
+      "id": 20,
+      "name": "Thai Green Curry",
+      "description": "Authentic Thai curry with coconut milk, bamboo shoots, and Thai basil. Choice of protein.",
+      "price": 17.99,
+      "image": "https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=400&h=300&fit=crop",
+      "category": "mains",
+      "dietary": ["gluten-free"],
+      "spicyLevel": 3,
+      "popular": true,
+      "available": true,
+      "preparationTime": 20,
+      "customizations": {
+        "addOns": [
+          { "name": "Tofu", "price": 0 },
+          { "name": "Chicken", "price": 2.00 },
+          { "name": "Shrimp", "price": 4.00 }
+        ]
+      }
+    },
+    {
+      "id": 21,
+      "name": "Fish and Chips",
+      "description": "Beer-battered cod fillets with crispy fries, mushy peas, and tartar sauce.",
+      "price": 16.99,
+      "image": "https://images.unsplash.com/photo-1579208030886-b1f5b7d7f4a8?w=400&h=300&fit=crop",
+      "category": "mains",
+      "dietary": [],
+      "spicyLevel": 0,
+      "popular": false,
+      "available": true,
+      "preparationTime": 20
+    },
+    {
+      "id": 22,
+      "name": "Lamb Chops",
+      "description": "Herb-crusted lamb chops with mint jelly, roasted potatoes, and asparagus.",
+      "price": 32.99,
+      "image": "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=400&h=300&fit=crop",
+      "category": "mains",
+      "dietary": ["gluten-free"],
+      "spicyLevel": 0,
+      "popular": false,
+      "available": true,
+      "preparationTime": 25
+    },
+    {
+      "id": 23,
+      "name": "Margherita Pizza",
+      "description": "Classic pizza with fresh mozzarella, tomatoes, basil, and olive oil on thin crust.",
+      "price": 14.99,
+      "image": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400&h=300&fit=crop",
+      "category": "mains",
+      "dietary": ["vegetarian"],
+      "spicyLevel": 0,
+      "popular": true,
+      "available": true,
+      "preparationTime": 18,
+      "customizations": {
+        "sizes": [
+          { "name": "Personal (10\")", "priceModifier": -3.00 },
+          { "name": "Medium (12\")", "priceModifier": 0 },
+          { "name": "Large (14\")", "priceModifier": 4.00 }
+        ],
+        "addOns": [
+          { "name": "Extra Cheese", "price": 2.00 },
+          { "name": "Pepperoni", "price": 2.50 },
+          { "name": "Mushrooms", "price": 1.50 }
+        ]
+      }
+    },
+    {
+      "id": 24,
+      "name": "Grilled Chicken Breast",
+      "description": "Herb-marinated chicken breast with roasted vegetables and quinoa.",
+      "price": 16.99,
+      "image": "https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?w=400&h=300&fit=crop",
+      "category": "mains",
+      "dietary": ["gluten-free"],
+      "spicyLevel": 0,
+      "popular": false,
+      "available": true,
+      "preparationTime": 20
+    },
+    {
+      "id": 25,
+      "name": "Beef Tacos",
+      "description": "Three soft corn tortillas with seasoned ground beef, fresh salsa, and guacamole.",
+      "price": 13.99,
+      "image": "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&h=300&fit=crop",
+      "category": "mains",
+      "dietary": ["gluten-free"],
+      "spicyLevel": 2,
+      "popular": true,
+      "available": true,
+      "preparationTime": 15
+    },
+    {
+      "id": 26,
+      "name": "Mushroom Risotto",
+      "description": "Creamy arborio rice with wild mushrooms, parmesan, and truffle oil.",
+      "price": 18.99,
+      "image": "https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=400&h=300&fit=crop",
+      "category": "mains",
+      "dietary": ["vegetarian", "gluten-free"],
+      "spicyLevel": 0,
+      "popular": false,
+      "available": true,
+      "preparationTime": 25
+    },
+    {
+      "id": 27,
+      "name": "Pad Thai",
+      "description": "Stir-fried rice noodles with egg, bean sprouts, peanuts, and lime.",
+      "price": 15.99,
+      "image": "https://images.unsplash.com/photo-1559314809-0d155014e29e?w=400&h=300&fit=crop",
+      "category": "mains",
+      "dietary": [],
+      "spicyLevel": 1,
+      "popular": true,
+      "available": true,
+      "preparationTime": 18,
+      "customizations": {
+        "addOns": [
+          { "name": "Tofu", "price": 0 },
+          { "name": "Chicken", "price": 3.00 },
+          { "name": "Shrimp", "price": 5.00 }
+        ]
+      }
+    },
+    {
+      "id": 28,
+      "name": "Butter Chicken",
+      "description": "Tender chicken in a rich, creamy tomato-based curry sauce. Served with basmati rice.",
+      "price": 17.99,
+      "image": "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=400&h=300&fit=crop",
+      "category": "mains",
+      "dietary": ["gluten-free"],
+      "spicyLevel": 2,
+      "popular": true,
+      "available": true,
+      "preparationTime": 22
+    },
+    {
+      "id": 29,
+      "name": "Spaghetti Bolognese",
+      "description": "Classic Italian pasta with slow-simmered meat sauce and parmesan.",
+      "price": 15.99,
+      "image": "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400&h=300&fit=crop",
+      "category": "mains",
+      "dietary": [],
+      "spicyLevel": 0,
+      "popular": false,
+      "available": true,
+      "preparationTime": 18
+    },
+    {
+      "id": 30,
+      "name": "Teriyaki Salmon Bowl",
+      "description": "Grilled salmon with teriyaki glaze over sushi rice with edamame and seaweed salad.",
+      "price": 21.99,
+      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=300&fit=crop",
+      "category": "mains",
+      "dietary": ["gluten-free"],
+      "spicyLevel": 0,
+      "popular": false,
+      "available": true,
+      "preparationTime": 20
+    },
+    {
+      "id": 31,
+      "name": "Chocolate Lava Cake",
+      "description": "Warm chocolate cake with a molten center, served with vanilla ice cream.",
+      "price": 9.99,
+      "image": "https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=400&h=300&fit=crop",
+      "category": "desserts",
+      "dietary": ["vegetarian"],
+      "spicyLevel": 0,
+      "popular": true,
+      "available": true,
+      "preparationTime": 12,
+      "customizations": {
+        "addOns": [
+          { "name": "Extra Ice Cream Scoop", "price": 2.00 },
+          { "name": "Whipped Cream", "price": 1.00 },
+          { "name": "Chocolate Sauce", "price": 1.00 }
+        ]
+      }
+    },
+    {
+      "id": 32,
+      "name": "New York Cheesecake",
+      "description": "Creamy classic cheesecake with graham cracker crust and berry compote.",
+      "price": 8.99,
+      "image": "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=400&h=300&fit=crop",
+      "category": "desserts",
+      "dietary": ["vegetarian"],
+      "spicyLevel": 0,
+      "popular": true,
+      "available": true,
+      "preparationTime": 5
+    },
+    {
+      "id": 33,
+      "name": "Tiramisu",
+      "description": "Italian classic with layers of espresso-soaked ladyfingers and mascarpone cream.",
+      "price": 9.49,
+      "image": "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400&h=300&fit=crop",
+      "category": "desserts",
+      "dietary": ["vegetarian"],
+      "spicyLevel": 0,
+      "popular": true,
+      "available": true,
+      "preparationTime": 5
+    },
+    {
+      "id": 34,
+      "name": "Apple Pie à la Mode",
+      "description": "Homemade apple pie with cinnamon and caramel, topped with vanilla ice cream.",
+      "price": 7.99,
+      "image": "https://images.unsplash.com/photo-1568571780765-9276ac8b75a2?w=400&h=300&fit=crop",
+      "category": "desserts",
+      "dietary": ["vegetarian"],
+      "spicyLevel": 0,
+      "popular": false,
+      "available": true,
+      "preparationTime": 5
+    },
+    {
+      "id": 35,
+      "name": "Crème Brûlée",
+      "description": "Rich vanilla custard with a caramelized sugar crust.",
+      "price": 8.49,
+      "image": "https://images.unsplash.com/photo-1470124182917-cc6e71b22ecc?w=400&h=300&fit=crop",
+      "category": "desserts",
+      "dietary": ["vegetarian", "gluten-free"],
+      "spicyLevel": 0,
+      "popular": false,
+      "available": true,
+      "preparationTime": 5
+    },
+    {
+      "id": 36,
+      "name": "Gelato Trio",
+      "description": "Three scoops of authentic Italian gelato. Ask for today's flavors.",
+      "price": 7.49,
+      "image": "https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=400&h=300&fit=crop",
+      "category": "desserts",
+      "dietary": ["vegetarian", "gluten-free"],
+      "spicyLevel": 0,
+      "popular": true,
+      "available": true,
+      "preparationTime": 3
+    },
+    {
+      "id": 37,
+      "name": "Brownie Sundae",
+      "description": "Warm chocolate brownie with ice cream, whipped cream, and hot fudge.",
+      "price": 8.99,
+      "image": "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&h=300&fit=crop",
+      "category": "desserts",
+      "dietary": ["vegetarian"],
+      "spicyLevel": 0,
+      "popular": false,
+      "available": true,
+      "preparationTime": 8
+    },
+    {
+      "id": 38,
+      "name": "Panna Cotta",
+      "description": "Italian vanilla cream dessert with raspberry coulis.",
+      "price": 7.99,
+      "image": "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&h=300&fit=crop",
+      "category": "desserts",
+      "dietary": ["vegetarian", "gluten-free"],
+      "spicyLevel": 0,
+      "popular": false,
+      "available": true,
+      "preparationTime": 5
+    },
+    {
+      "id": 39,
+      "name": "Mango Sticky Rice",
+      "description": "Thai dessert with sweet coconut sticky rice and fresh mango slices.",
+      "price": 8.49,
+      "image": "https://images.unsplash.com/photo-1596451190630-186aff535bf2?w=400&h=300&fit=crop",
+      "category": "desserts",
+      "dietary": ["vegetarian", "vegan", "gluten-free"],
+      "spicyLevel": 0,
+      "popular": false,
+      "available": true,
+      "preparationTime": 5
+    },
+    {
+      "id": 40,
+      "name": "Churros",
+      "description": "Crispy fried dough sticks coated in cinnamon sugar with chocolate dipping sauce.",
+      "price": 6.99,
+      "image": "https://images.unsplash.com/photo-1624371414361-e670d8cf5f4a?w=400&h=300&fit=crop",
+      "category": "desserts",
+      "dietary": ["vegetarian"],
+      "spicyLevel": 0,
+      "popular": true,
+      "available": true,
+      "preparationTime": 10
+    },
+    {
+      "id": 41,
+      "name": "Fresh Lemonade",
+      "description": "House-made lemonade with fresh squeezed lemons and a hint of mint.",
+      "price": 4.49,
+      "image": "https://images.unsplash.com/photo-1523371054106-bbf80586c38c?w=400&h=300&fit=crop",
+      "category": "beverages",
+      "dietary": ["vegetarian", "vegan", "gluten-free"],
+      "spicyLevel": 0,
+      "popular": true,
+      "available": true,
+      "preparationTime": 3,
+      "customizations": {
+        "sizes": [
+          { "name": "Regular", "priceModifier": 0 },
+          { "name": "Large", "priceModifier": 1.50 }
+        ],
+        "addOns": [
+          { "name": "Extra Mint", "price": 0.50 },
+          { "name": "Raspberry", "price": 0.75 }
+        ]
+      }
+    },
+    {
+      "id": 42,
+      "name": "Iced Coffee",
+      "description": "Cold brew coffee served over ice. Sweetener and cream on the side.",
+      "price": 4.99,
+      "image": "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&h=300&fit=crop",
+      "category": "beverages",
+      "dietary": ["vegetarian", "vegan", "gluten-free"],
+      "spicyLevel": 0,
+      "popular": true,
+      "available": true,
+      "preparationTime": 3
+    },
+    {
+      "id": 43,
+      "name": "Mango Smoothie",
+      "description": "Fresh mango blended with yogurt and a touch of honey.",
+      "price": 5.99,
+      "image": "https://images.unsplash.com/photo-1546173159-315724a31696?w=400&h=300&fit=crop",
+      "category": "beverages",
+      "dietary": ["vegetarian", "gluten-free"],
+      "spicyLevel": 0,
+      "popular": true,
+      "available": true,
+      "preparationTime": 5
+    },
+    {
+      "id": 44,
+      "name": "Thai Iced Tea",
+      "description": "Sweet and creamy Thai tea served over ice.",
+      "price": 4.49,
+      "image": "https://images.unsplash.com/photo-1558857563-b371033873b8?w=400&h=300&fit=crop",
+      "category": "beverages",
+      "dietary": ["vegetarian", "gluten-free"],
+      "spicyLevel": 0,
+      "popular": true,
+      "available": true,
+      "preparationTime": 3
+    },
+    {
+      "id": 45,
+      "name": "Green Tea",
+      "description": "Premium Japanese green tea, hot or iced.",
+      "price": 3.49,
+      "image": "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&h=300&fit=crop",
+      "category": "beverages",
+      "dietary": ["vegetarian", "vegan", "gluten-free"],
+      "spicyLevel": 0,
+      "popular": false,
+      "available": true,
+      "preparationTime": 3
+    },
+    {
+      "id": 46,
+      "name": "Sparkling Water",
+      "description": "Refreshing sparkling mineral water with lemon slice.",
+      "price": 2.99,
+      "image": "https://images.unsplash.com/photo-1606168094336-48f205276929?w=400&h=300&fit=crop",
+      "category": "beverages",
+      "dietary": ["vegetarian", "vegan", "gluten-free"],
+      "spicyLevel": 0,
+      "popular": false,
+      "available": true,
+      "preparationTime": 1
+    },
+    {
+      "id": 47,
+      "name": "Strawberry Milkshake",
+      "description": "Creamy milkshake made with real strawberries and vanilla ice cream.",
+      "price": 6.49,
+      "image": "https://images.unsplash.com/photo-1579954115545-a95591f28bfc?w=400&h=300&fit=crop",
+      "category": "beverages",
+      "dietary": ["vegetarian", "gluten-free"],
+      "spicyLevel": 0,
+      "popular": true,
+      "available": true,
+      "preparationTime": 5
+    },
+    {
+      "id": 48,
+      "name": "Hot Chocolate",
+      "description": "Rich and creamy hot chocolate topped with whipped cream.",
+      "price": 4.49,
+      "image": "https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=400&h=300&fit=crop",
+      "category": "beverages",
+      "dietary": ["vegetarian", "gluten-free"],
+      "spicyLevel": 0,
+      "popular": false,
+      "available": true,
+      "preparationTime": 3
+    },
+    {
+      "id": 49,
+      "name": "Fresh Orange Juice",
+      "description": "Freshly squeezed orange juice, no added sugar.",
+      "price": 4.99,
+      "image": "https://images.unsplash.com/photo-1534353473418-4cfa6c56fd38?w=400&h=300&fit=crop",
+      "category": "beverages",
+      "dietary": ["vegetarian", "vegan", "gluten-free"],
+      "spicyLevel": 0,
+      "popular": false,
+      "available": true,
+      "preparationTime": 3
+    },
+    {
+      "id": 50,
+      "name": "Coconut Water",
+      "description": "Refreshing natural coconut water served chilled.",
+      "price": 3.99,
+      "image": "https://images.unsplash.com/photo-1536657464919-892534f60d6e?w=400&h=300&fit=crop",
+      "category": "beverages",
+      "dietary": ["vegetarian", "vegan", "gluten-free"],
+      "spicyLevel": 0,
+      "popular": false,
+      "available": true,
+      "preparationTime": 1
+    }
+  ]
+}

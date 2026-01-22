@@ -1,5 +1,3 @@
-// Type definitions for the Restaurant E-Menu Application
-
 export interface MenuItem {
   id: number;
   name: string;
@@ -48,4 +46,29 @@ export interface CartItem extends MenuItem {
   quantity: number;
   selectedSize?: string;
   selectedAddOns?: string[];
+}
+
+export interface MenuContextType {
+  items: MenuItem[];
+  allItems: MenuItem[];
+  categories: Category[];
+  loading: boolean;
+  error: string | null;
+  activeCategory: string;
+  searchQuery: string;
+  darkMode: boolean;
+  selectedItem: MenuItem | null;
+  cartCount: number;
+  setActiveCategory: (category: string) => void;
+  setSearchQuery: (query: string) => void;
+  clearSearch: () => void;
+  toggleDarkMode: () => void;
+  setSelectedItem: (item: MenuItem | null) => void;
+  addToCart: () => void;
+}
+
+export interface ModalContentProps {
+  item: MenuItem;
+  onClose: () => void;
+  onAddToCart: () => void;
 }

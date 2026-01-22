@@ -31,7 +31,7 @@ const Header = () => {
           <img src="src/assets/logo.png" alt="logo" className="h-16" />
         </Link>
         <div className="text-5xl font-bold text-blue-950 flex justify-end">
-          SoftLien Restaurant
+          Delicious Bites
         </div>
         <ul className="flex font-semibold space-x-6">
           <li>

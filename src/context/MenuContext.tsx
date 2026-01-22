@@ -1,51 +1,17 @@
-import { createContext, useState, useEffect, useCallback, type ReactNode } from 'react';
+import { useState, useEffect, useCallback, type ReactNode } from 'react';
 import { fetchMenuItems, fetchCategories } from '../api/menuApi';
-import type { MenuItem, Category } from '../types';
-
-// Define the context value type
-interface MenuContextType {
-  items: MenuItem[];
-  allItems: MenuItem[];
-  categories: Category[];
-  loading: boolean;
-  error: string | null;
-  activeCategory: string;
-  searchQuery: string;
-  darkMode: boolean;
-  selectedItem: MenuItem | null;
-  cartCount: number;
-  setActiveCategory: (category: string) => void;
-  setSearchQuery: (query: string) => void;
-  clearSearch: () => void;
-  toggleDarkMode: () => void;
-  setSelectedItem: (item: MenuItem | null) => void;
-  addToCart: () => void;
-}
-
-// Create context with default undefined value
-export const MenuContext = createContext<MenuContextType | undefined>(undefined);
+import type { MenuItem, Category, MenuContextType } from '../types';
+import { MenuContext } from './menuContextDef';
+export { MenuContext };
 
 interface MenuProviderProps {
   children: ReactNode;
 }
 
-/**
- * MenuProvider Component
- * Provides global state management for the menu application including:
- * - Menu items and categories data
- * - Loading and error states
- * - Category filtering
- * - Search functionality
- * - Dark mode toggle
- * - Item detail view state
- */
 export const MenuProvider = ({ children }: MenuProviderProps) => {
-  // Data state
   const [allItems, setAllItems] = useState<MenuItem[]>([]);
   const [items, setItems] = useState<MenuItem[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
-  
-  // UI state
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState('all');
@@ -54,12 +20,10 @@ export const MenuProvider = ({ children }: MenuProviderProps) => {
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
   const [cartCount, setCartCount] = useState(0);
 
-  // Initial data fetch - fetch all items once
   useEffect(() => {
     const loadInitialData = async () => {
       setLoading(true);
       try {
-        // Fetch all data in parallel for better performance
         const [menuData, categoryData] = await Promise.all([
           fetchMenuItems(),
           fetchCategories()
@@ -80,18 +44,15 @@ export const MenuProvider = ({ children }: MenuProviderProps) => {
     loadInitialData();
   }, []);
 
-  // Filter items when category or search query changes
   useEffect(() => {
     let filteredItems = [...allItems];
 
-    // Apply category filter
     if (activeCategory !== 'all') {
       filteredItems = filteredItems.filter(
         item => item.category.toLowerCase() === activeCategory.toLowerCase()
       );
     }
 
-    // Apply search filter (case-insensitive search on name and description)
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase().trim();
       filteredItems = filteredItems.filter(
@@ -104,7 +65,6 @@ export const MenuProvider = ({ children }: MenuProviderProps) => {
     setItems(filteredItems);
   }, [activeCategory, searchQuery, allItems]);
 
-  // Handle dark mode toggle with localStorage persistence
   useEffect(() => {
     const savedDarkMode = localStorage.getItem('darkMode');
     if (savedDarkMode !== null) {
@@ -117,7 +77,6 @@ export const MenuProvider = ({ children }: MenuProviderProps) => {
   }, []);
 
   useEffect(() => {
-    // Apply dark mode class to document
     if (darkMode) {
       document.documentElement.classList.add('dark');
     } else {
@@ -126,17 +85,14 @@ export const MenuProvider = ({ children }: MenuProviderProps) => {
     localStorage.setItem('darkMode', JSON.stringify(darkMode));
   }, [darkMode]);
 
-  // Clear search function
   const clearSearch = useCallback(() => {
     setSearchQuery('');
   }, []);
 
-  // Toggle dark mode
   const toggleDarkMode = useCallback(() => {
     setDarkMode(prev => !prev);
   }, []);
 
-  // Add to cart function (placeholder - shows alert)
   const addToCart = useCallback(() => {
     setCartCount(prev => prev + 1);
   }, []);
@@ -167,4 +123,4 @@ export const MenuProvider = ({ children }: MenuProviderProps) => {
   );
 };
 
-export default MenuContext;
+export default MenuProvider;

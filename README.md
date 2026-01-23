@@ -2,11 +2,6 @@
 
 A modern, responsive digital menu application built with React, TypeScript, and Tailwind CSS.
 
-![React](https://img.shields.io/badge/React-19.2-61DAFB?style=flat-square&logo=react)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?style=flat-square&logo=typescript)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-4.1-06B6D4?style=flat-square&logo=tailwindcss)
-![Vite](https://img.shields.io/badge/Vite-7.2-646CFF?style=flat-square&logo=vite)
-
 ## 📋 Features Implemented
 
 ### Must-Have Features ✅
@@ -64,6 +59,8 @@ A modern, responsive digital menu application built with React, TypeScript, and 
 - ✅ **Item Customization** - Size options and add-ons in detail view
 - ✅ **Quantity Selector** - +/- buttons for quantity selection
 - ✅ **Cart Counter** - Visual cart icon with item count badge
+- ✅ **Responsive Pagination** - Adaptive pagination with fewer buttons on mobile
+- ✅ **Responsive Items Per Page** - Dynamic items count based on screen size
 
 ## 🛠️ Tech Stack
 
@@ -81,25 +78,36 @@ A modern, responsive digital menu application built with React, TypeScript, and 
 ```
 src/
 ├── api/
-│   └── menuApi.ts          # API functions for fetching data
+│   └── menuApi.ts              # API functions for fetching data
+├── assets/                     # Static assets (images, icons)
 ├── components/
 │   ├── layout/
-│   │   ├── Header.tsx      # Header with search and navigation
-│   │   └── Footer.tsx      # Footer component
+│   │   ├── Footer.tsx          # Footer component
+│   │   ├── Header.tsx          # Header with search and navigation
+│   │   └── Layout.tsx          # Main layout wrapper
 │   └── menu/
-│       ├── CategoryFilter.tsx  # Category tabs
+│       ├── CartButton.tsx      # Cart button with item count badge
+│       ├── CategoryFilter.tsx  # Category filter tabs
+│       ├── DarkModeToggle.tsx  # Dark/light mode toggle button
+│       ├── ItemDetailModal.tsx # Item detail popup modal
 │       ├── MenuCard.tsx        # Individual menu item card
-│       ├── MenuGrid.tsx        # Grid display with states
-│       └── ItemDetailModal.tsx # Item detail popup
+│       ├── MenuGrid.tsx        # Grid display with pagination
+│       ├── MenuHeader.tsx      # Menu section header
+│       └── SearchBar.tsx       # Search input component
 ├── context/
-│   └── MenuContext.tsx     # Global state management
+│   ├── MenuContext.tsx         # Menu context provider
+│   └── menuContextDef.ts       # Context type definitions
 ├── hooks/
-│   └── useMenu.ts          # Custom hook for menu context
+│   └── useMenu.ts              # Custom hook for menu context
+├── pages/
+│   ├── Home.tsx                # Home page
+│   └── ItemDetail.tsx          # Item detail page
 ├── types/
-│   └── index.ts            # TypeScript interfaces
-├── App.tsx                 # Main app component
-├── main.tsx                # Entry point
-└── index.css               # Global styles
+│   └── index.ts                # TypeScript interfaces
+├── App.css                     # App-specific styles
+├── App.tsx                     # Main app component with routes
+├── index.css                   # Global styles
+└── main.tsx                    # Entry point
 ```
 
 ## 🚀 Getting Started
@@ -172,8 +180,18 @@ npm run build
 
 ### Responsive Strategy
 - Mobile-first approach with Tailwind's responsive utilities
-- Grid layout adapts from 1 column (mobile) to 4 columns (desktop)
+- Grid layout adapts from 2 columns (mobile) to 5 columns (large desktop)
 - Touch-friendly tap targets (minimum 44px)
+- Responsive pagination with simplified controls on mobile
+- Dynamic items per page based on screen size (6-10 items)
+
+## 📱 Responsive Breakpoints
+
+| Breakpoint | Screen Size | Grid Columns | Items Per Page |
+|------------|-------------|--------------|----------------|
+| Mobile | < 640px | 2 | 6 |
+| Tablet | 640px - 1023px | 3 | 6 |
+| Desktop | ≥ 1024px | 4-5 | 10 |
 
 ## 🔧 Assumptions Made
 
@@ -190,6 +208,3 @@ npm run build
 - The application gracefully handles API errors and empty states
 
 ---
-
-Made with ❤️ for the Frontend Intern Hiring Test
-

@@ -59,7 +59,7 @@ const Header = () => {
         </Link>
 
         {/* Restaurant Name - Hidden on mobile, visible on tablet+ */}
-        <div className="hidden md:flex text-2xl lg:text-5xl font-bold text-blue-950 dark:text-orange-400">
+        <div className="hidden md:flex text-2xl lg:text-5xl font-bold text-blue-950">
           Delicious Bites
         </div>
 

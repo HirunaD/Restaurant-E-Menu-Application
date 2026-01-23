@@ -1,10 +1,12 @@
+import { useNavigate } from 'react-router-dom';
 import type { MenuCardProps } from '../../types';
 import { useMenu } from '../../hooks/useMenu';
 
 
 
 const MenuCard = ({ item }: MenuCardProps) => {
-  const { setSelectedItem, addToCart } = useMenu();
+  const { addToCart } = useMenu();
+  const navigate = useNavigate();
 
   // Format price to currency
   const formatPrice = (price: number): string => {
@@ -55,7 +57,7 @@ const MenuCard = ({ item }: MenuCardProps) => {
 
   return (
     <article
-      onClick={() => setSelectedItem(item)}
+      onClick={() => navigate(`/item/${item.id}`)}
       className="group bg-gray-200 dark:bg-gray-800 rounded-xl shadow-md 
                  overflow-hidden cursor-pointer
                  hover:shadow-xl hover:-translate-y-1 

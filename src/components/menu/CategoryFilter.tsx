@@ -9,7 +9,7 @@ const categoryIcons: Record<string, string> = {
 };
 
 const CategoryFilter = () => {
-  const { categories, activeCategory, setActiveCategory, allItems, items } =
+  const { categories, activeCategory, setActiveCategory, allItems } =
     useMenu();
 
   // Count items per category
@@ -88,25 +88,6 @@ const CategoryFilter = () => {
               </span>
             </button>
           ))}
-        </div>
-
-        <div className="mt-3 flex items-center justify-between text-sm">
-          <p className="text-gray-500 dark:text-gray-400">
-            Showing{" "}
-            <span className="font-semibold text-gray-700 dark:text-gray-200">
-              {items.length}
-            </span>{" "}
-            items
-            {activeCategory !== "all" && (
-              <span>
-                {" "}
-                in{" "}
-                <span className="capitalize font-medium text-orange-500">
-                  {activeCategory}
-                </span>
-              </span>
-            )}
-          </p>
         </div>
       </div>
     </nav>

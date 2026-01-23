@@ -72,3 +72,7 @@ export interface ModalContentProps {
   onClose: () => void;
   onAddToCart: () => void;
 }
+
+export interface MenuCardProps {
+  item: MenuItem;
+}

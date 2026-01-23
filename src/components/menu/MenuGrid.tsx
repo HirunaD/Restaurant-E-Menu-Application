@@ -1,12 +1,107 @@
+import { useState } from "react";
 import { useMenu } from "../../hooks/useMenu";
 import MenuCard from "./MenuCard";
 
+const ITEMS_PER_PAGE = 10;
+
 const MenuGrid = () => {
   const { items, loading, error, searchQuery, clearSearch } = useMenu();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [prevItemsLength, setPrevItemsLength] = useState(items.length);
+  const [prevSearchQuery, setPrevSearchQuery] = useState(searchQuery);
+
+  // Reset to page 1 when items change (React-recommended pattern for adjusting state during render)
+  if (items.length !== prevItemsLength || searchQuery !== prevSearchQuery) {
+    setCurrentPage(1);
+    setPrevItemsLength(items.length);
+    setPrevSearchQuery(searchQuery);
+  }
+
+  const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const paginatedItems = items.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
+  const goToPage = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const renderPagination = () => {
+    if (totalPages <= 1) return null;
+
+    const pages: (number | string)[] = [];
+    
+    if (totalPages <= 7) {
+      for (let i = 1; i <= totalPages; i++) {
+        pages.push(i);
+      }
+    } else {
+      if (currentPage <= 3) {
+        pages.push(1, 2, 3, 4, "...", totalPages);
+      } else if (currentPage >= totalPages - 2) {
+        pages.push(1, "...", totalPages - 3, totalPages - 2, totalPages - 1, totalPages);
+      } else {
+        pages.push(1, "...", currentPage - 1, currentPage, currentPage + 1, "...", totalPages);
+      }
+    }
+
+    return (
+      <div className="flex items-center justify-center gap-2 mt-8">
+        {/* Previous Button */}
+        <button
+          onClick={() => goToPage(currentPage - 1)}
+          disabled={currentPage === 1}
+          className="px-3 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 
+                     hover:bg-orange-100 dark:hover:bg-orange-900/30 disabled:opacity-50 disabled:cursor-not-allowed
+                     transition-colors duration-200"
+          aria-label="Previous page"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+
+        {/* Page Numbers */}
+        {pages.map((page, index) => (
+          page === "..." ? (
+            <span key={`ellipsis-${index}`} className="px-3 py-2 text-gray-500 dark:text-gray-400">
+              ...
+            </span>
+          ) : (
+            <button
+              key={page}
+              onClick={() => goToPage(page as number)}
+              className={`px-4 py-2 rounded-lg font-medium transition-colors duration-200
+                ${currentPage === page
+                  ? "bg-orange-500 text-white"
+                  : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-orange-100 dark:hover:bg-orange-900/30"
+                }`}
+            >
+              {page}
+            </button>
+          )
+        ))}
+
+        {/* Next Button */}
+        <button
+          onClick={() => goToPage(currentPage + 1)}
+          disabled={currentPage === totalPages}
+          className="px-3 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 
+                     hover:bg-orange-100 dark:hover:bg-orange-900/30 disabled:opacity-50 disabled:cursor-not-allowed
+                     transition-colors duration-200"
+          aria-label="Next page"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+    );
+  };
 
   if (loading) {
     return (
-      <section className="p-4 md:p-6 max-w-7xl mx-auto">
+      <section className="p-4 md:p-6">
         <div className="flex items-center justify-center gap-2 mb-6">
           <div className="w-5 h-5 border-2 border-orange-500 border-t-transparent rounded-full animate-spin" />
           <span className="text-gray-500 dark:text-gray-400">
@@ -18,7 +113,7 @@ const MenuGrid = () => {
           {[...Array(8)].map((_, i) => (
             <div
               key={i}
-              className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md animate-pulse"
+              className="bg-gray-200 dark:bg-gray-800 rounded-xl overflow-hidden shadow-md animate-pulse"
             >
               <div className="h-48 bg-gray-200 dark:bg-gray-700" />
               <div className="p-4 space-y-3">
@@ -39,7 +134,7 @@ const MenuGrid = () => {
 
   if (error) {
     return (
-      <section className="p-4 md:p-6 max-w-7xl mx-auto">
+      <section className="p-4 md:p-6">
         <div className="flex flex-col items-center justify-center py-16 px-4">
           <div className="w-24 h-24 mb-6 text-red-400">
             <svg
@@ -110,7 +205,7 @@ const MenuGrid = () => {
   }
 
   return (
-    <section className="p-4 md:p-6 max-w-7xl mx-auto">
+    <section className="p-4 md:p-6 w-full">
       {searchQuery && (
         <div className="mb-4 p-3 bg-orange-50 dark:bg-orange-900/20 rounded-lg border border-orange-200 dark:border-orange-800">
           <p className="text-sm text-orange-700 dark:text-orange-400">
@@ -120,11 +215,20 @@ const MenuGrid = () => {
         </div>
       )}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
-        {items.map((item) => (
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
+        {paginatedItems.map((item) => (
           <MenuCard key={item.id} item={item} />
         ))}
       </div>
+
+      {renderPagination()}
+
+      {/* Page info */}
+      {totalPages > 1 && (
+        <div className="text-center mt-4 text-sm text-gray-500 dark:text-gray-400">
+          Showing {startIndex + 1}-{Math.min(startIndex + ITEMS_PER_PAGE, items.length)} of {items.length} items
+        </div>
+      )}
     </section>
   );
 };

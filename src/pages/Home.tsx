@@ -5,7 +5,7 @@ import ItemDetailModal from "../components/menu/ItemDetailModal";
 
 const Home = () => {
   return (
-    <div className="flex flex-col bg-gray-50 dark:bg-gray-950 transition-colors duration-300">
+    <div className="flex flex-col bg-gray-100 dark:bg-gray-950 transition-colors duration-300">
       {/* Top bar with category filter and search */}
       <div className="flex w-full">
         <CategoryFilter />
@@ -13,7 +13,7 @@ const Home = () => {
       </div>
 
       {/* Main content area with menu grid */}
-      <main className="flex">
+      <main className="flex w-full">
         <MenuGrid />
       </main>
 

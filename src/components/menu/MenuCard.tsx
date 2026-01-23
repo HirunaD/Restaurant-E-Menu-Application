@@ -1,21 +1,8 @@
-import type { MenuItem } from '../../types';
+import type { MenuCardProps } from '../../types';
 import { useMenu } from '../../hooks/useMenu';
 
-interface MenuCardProps {
-  item: MenuItem;
-}
 
-/**
- * MenuCard Component
- * Displays a single menu item with:
- * - Item image (properly sized)
- * - Name and price
- * - Description (truncated)
- * - Dietary badges (vegetarian, vegan, gluten-free, etc.)
- * - Spicy level indicator
- * - "Add to Cart" button
- * - Click to open detail view
- */
+
 const MenuCard = ({ item }: MenuCardProps) => {
   const { setSelectedItem, addToCart } = useMenu();
 
@@ -69,7 +56,7 @@ const MenuCard = ({ item }: MenuCardProps) => {
   return (
     <article
       onClick={() => setSelectedItem(item)}
-      className="group bg-white dark:bg-gray-800 rounded-xl shadow-md 
+      className="group bg-gray-200 dark:bg-gray-800 rounded-xl shadow-md 
                  overflow-hidden cursor-pointer
                  hover:shadow-xl hover:-translate-y-1 
                  transition-all duration-300 ease-out

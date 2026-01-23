@@ -235,7 +235,7 @@ const ItemDetail = () => {
       </div>
 
       <div className="max-w-6xl mx-auto px-4 py-6 md:py-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-12">
           {/* Left Column - Image */}
           <div className="relative">
             <div className="aspect-square rounded-2xl overflow-hidden shadow-xl">
@@ -267,20 +267,20 @@ const ItemDetail = () => {
           <div className="flex flex-col">
             {/* Name and Price */}
             <div className="mb-6">
-              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">
                 {item.name}
               </h1>
-              <p className="text-2xl md:text-3xl font-bold text-orange-500">
+              <p className="text-xl sm:text-2xl md:text-3xl font-bold text-orange-500">
                 {formatPrice(item.price)}
               </p>
             </div>
 
             {/* Full Description */}
             <div className="mb-6">
-              <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">
+              <h2 className="text-basesm:text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">
                 Description
               </h2>
-              <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed">
                 {item.description}
               </p>
             </div>
@@ -301,7 +301,7 @@ const ItemDetail = () => {
                     d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                   />
                 </svg>
-                <span>
+                <span className="text-sm sm:text-base">
                   Preparation time:{" "}
                   <strong>{item.preparationTime} minutes</strong>
                 </span>
@@ -311,7 +311,7 @@ const ItemDetail = () => {
             {/* Dietary Indicators */}
             {item.dietary && item.dietary.length > 0 && (
               <div className="mb-6">
-                <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">
+                <h2 className="text-basesm:text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">
                   Dietary Information
                 </h2>
                 <div className="flex flex-wrap gap-2">
@@ -392,27 +392,27 @@ const ItemDetail = () => {
 
             {/* Quantity Selector */}
             <div className="mb-8">
-              <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">
+              <h2 className="text-base sm:text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">
                 Quantity
               </h2>
               <div className="flex items-center gap-4">
                 <button
                   onClick={() => setQuantity((q) => Math.max(1, q - 1))}
                   disabled={quantity <= 1}
-                  className="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300
+                  className="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300
                              hover:bg-orange-100 dark:hover:bg-orange-900/30 hover:text-orange-600 dark:hover:text-orange-400
                              disabled:opacity-50 disabled:cursor-not-allowed
                              transition-colors duration-200 flex items-center justify-center text-2xl font-bold"
                 >
                   −
                 </button>
-                <span className="text-2xl font-bold text-gray-900 dark:text-white w-12 text-center">
+                <span className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white w-12 text-center">
                   {quantity}
                 </span>
                 <button
                   onClick={() => setQuantity((q) => Math.min(10, q + 1))}
                   disabled={quantity >= 10}
-                  className="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300
+                  className="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300
                              hover:bg-orange-100 dark:hover:bg-orange-900/30 hover:text-orange-600 dark:hover:text-orange-400
                              disabled:opacity-50 disabled:cursor-not-allowed
                              transition-colors duration-200 flex items-center justify-center text-2xl font-bold"
@@ -427,7 +427,7 @@ const ItemDetail = () => {
               <button
                 onClick={handleAddToCart}
                 disabled={!item.available || isAdding}
-                className="w-full py-4 px-6 bg-orange-500 hover:bg-orange-600 disabled:bg-gray-400 
+                className="w-full py-2 sm:py-4 sm:px-6 bg-orange-500 hover:bg-orange-600 disabled:bg-gray-400 
                            text-white text-lg font-bold rounded-xl shadow-lg
                            hover:shadow-xl disabled:cursor-not-allowed
                            transition-all duration-200 flex items-center justify-center gap-3"

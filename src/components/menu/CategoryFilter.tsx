@@ -39,7 +39,7 @@ const CategoryFilter = () => {
             aria-pressed={activeCategory === "all"}
           >
             <span className="text-lg">{categoryIcons.all}</span>
-            <span>All</span>
+            <span className="hidden lg:inline">All</span>
             <span
               className={`
               text-xs px-1.5 py-0.5 rounded-full
@@ -73,7 +73,7 @@ const CategoryFilter = () => {
               <span className="text-lg">
                 {categoryIcons[category.id] || "🍴"}
               </span>
-              <span className="capitalize">{category.name}</span>
+              <span className="capitalize hidden lg:inline">{category.name}</span>
               <span
                 className={`
                 text-xs px-1.5 py-0.5 rounded-full

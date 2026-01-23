@@ -1,14 +1,32 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useMenu } from "../../hooks/useMenu";
 import MenuCard from "./MenuCard";
 
-const ITEMS_PER_PAGE = 10;
+// Responsive items per page based on screen width
+const getItemsPerPage = (width: number): number => {
+  if (width < 640) return 6;       // mobile: 2 cols × 3 rows
+  if (width < 1024) return 6;      // tablet: 3 cols × 3 rows
+  return 10;                        // large: 5 cols × 2 rows
+};
 
 const MenuGrid = () => {
   const { items, loading, error, searchQuery, clearSearch } = useMenu();
   const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(() => 
+    typeof window !== "undefined" ? getItemsPerPage(window.innerWidth) : 10
+  );
   const [prevItemsLength, setPrevItemsLength] = useState(items.length);
   const [prevSearchQuery, setPrevSearchQuery] = useState(searchQuery);
+
+  // Handle responsive items per page
+  useEffect(() => {
+    const handleResize = () => {
+      setItemsPerPage(getItemsPerPage(window.innerWidth));
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Reset to page 1 when items change (React-recommended pattern for adjusting state during render)
   if (items.length !== prevItemsLength || searchQuery !== prevSearchQuery) {
@@ -17,9 +35,9 @@ const MenuGrid = () => {
     setPrevSearchQuery(searchQuery);
   }
 
-  const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const paginatedItems = items.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(items.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const paginatedItems = items.slice(startIndex, startIndex + itemsPerPage);
 
   const goToPage = (page: number) => {
     setCurrentPage(page);
@@ -226,7 +244,7 @@ const MenuGrid = () => {
       {/* Page info */}
       {totalPages > 1 && (
         <div className="text-center mt-4 text-sm text-gray-500 dark:text-gray-400">
-          Showing {startIndex + 1}-{Math.min(startIndex + ITEMS_PER_PAGE, items.length)} of {items.length} items
+          Showing {startIndex + 1}-{Math.min(startIndex + itemsPerPage, items.length)} of {items.length} items
         </div>
       )}
     </section>

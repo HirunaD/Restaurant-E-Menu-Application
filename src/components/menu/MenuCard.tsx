@@ -65,7 +65,7 @@ const MenuCard = ({ item }: MenuCardProps) => {
                  animate-fadeIn"
     >
       {/* Image container with overlay */}
-      <div className="relative h-48 md:h-52 overflow-hidden">
+      <div className="relative h-40 lg:h-52 overflow-hidden">
         <img
           src={item.image}
           alt={item.name}

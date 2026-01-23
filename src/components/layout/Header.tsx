@@ -68,37 +68,6 @@ const Header = () => {
           <DarkModeToggle />
           <CartButton />
         </div>
-
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 rounded-lg hover:bg-orange-300/50 transition-colors duration-200 touch-manipulation"
-          aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-          aria-expanded={mobileMenuOpen}
-        >
-          <svg
-            className="w-6 h-6 text-gray-800 dark:text-gray-200"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            {mobileMenuOpen ? (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            ) : (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            )}
-          </svg>
-        </button>
       </div>
 
       {/* Mobile Menu Overlay */}
@@ -111,7 +80,7 @@ const Header = () => {
 
       {/* Mobile Menu Panel */}
       <div
-        className={`md:hidden fixed top-15 md:top-20 right-0 w-64 sm:w-72 h-[calc(100vh-60px)] md:h-[calc(100vh-80px)] 
+        className={`hidden fixed top-15 md:top-20 right-0 w-64 sm:w-72 h-[calc(100vh-60px)] md:h-[calc(100vh-80px)] 
                    bg-white dark:bg-gray-900 shadow-xl z-50 
                    transform transition-transform duration-300 ease-out
                    ${mobileMenuOpen ? "translate-x-0" : "translate-x-full"}`}

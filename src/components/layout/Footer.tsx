@@ -2,14 +2,14 @@ const Footer = () => {
   return (
     <footer className="bg-gray-900 dark:bg-black text-white mt-auto">
       <div className="max-w-7xl mx-auto px-4 py-8">
-        <div className="flex justify-between">
+        <div className="flex flex-col sm:flex-row justify-between">
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">
               <img src="src/assets/logo.png" alt="logo" className="w-24 hidden md:block" />
               <h3 className="text-lg md:text-xl font-bold">Delicious Bites</h3>
             </div>
-            <p className="text-gray-400 text-xs md:text-sm leading-relaxed w-2/3">
+            <p className="text-gray-400 text-xs md:text-sm leading-relaxed sm:w-2/3">
               Experience the finest flavors crafted with passion. Fresh
               ingredients, authentic recipes, unforgettable taste.
             </p>

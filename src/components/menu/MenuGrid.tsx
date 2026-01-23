@@ -48,8 +48,24 @@ const MenuGrid = () => {
     if (totalPages <= 1) return null;
 
     const pages: (number | string)[] = [];
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 640;
     
-    if (totalPages <= 7) {
+    if (isMobile) {
+      // Simplified pagination for mobile
+      if (totalPages <= 5) {
+        for (let i = 1; i <= totalPages; i++) {
+          pages.push(i);
+        }
+      } else {
+        if (currentPage <= 2) {
+          pages.push(1, 2, "...", totalPages);
+        } else if (currentPage >= totalPages - 1) {
+          pages.push(1, "...", totalPages - 1, totalPages);
+        } else {
+          pages.push(1, "...", currentPage, "...", totalPages);
+        }
+      }
+    } else if (totalPages <= 7) {
       for (let i = 1; i <= totalPages; i++) {
         pages.push(i);
       }
@@ -64,17 +80,17 @@ const MenuGrid = () => {
     }
 
     return (
-      <div className="flex items-center justify-center gap-2 mt-8">
+      <div className="flex items-center justify-center gap-1 sm:gap-2 mt-8">
         {/* Previous Button */}
         <button
           onClick={() => goToPage(currentPage - 1)}
           disabled={currentPage === 1}
-          className="px-3 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 
+          className="px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 
                      hover:bg-orange-100 dark:hover:bg-orange-900/30 disabled:opacity-50 disabled:cursor-not-allowed
                      transition-colors duration-200"
           aria-label="Previous page"
         >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
@@ -82,14 +98,14 @@ const MenuGrid = () => {
         {/* Page Numbers */}
         {pages.map((page, index) => (
           page === "..." ? (
-            <span key={`ellipsis-${index}`} className="px-3 py-2 text-gray-500 dark:text-gray-400">
+            <span key={`ellipsis-${index}`} className="px-2 sm:px-3 py-1.5 sm:py-2 text-gray-500 dark:text-gray-400 text-sm sm:text-base">
               ...
             </span>
           ) : (
             <button
               key={page}
               onClick={() => goToPage(page as number)}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors duration-200
+              className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg font-medium text-sm sm:text-base transition-colors duration-200
                 ${currentPage === page
                   ? "bg-orange-500 text-white"
                   : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-orange-100 dark:hover:bg-orange-900/30"
@@ -104,12 +120,12 @@ const MenuGrid = () => {
         <button
           onClick={() => goToPage(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className="px-3 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 
+          className="px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 
                      hover:bg-orange-100 dark:hover:bg-orange-900/30 disabled:opacity-50 disabled:cursor-not-allowed
                      transition-colors duration-200"
           aria-label="Next page"
         >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </button>
@@ -233,7 +249,7 @@ const MenuGrid = () => {
         </div>
       )}
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
         {paginatedItems.map((item) => (
           <MenuCard key={item.id} item={item} />
         ))}

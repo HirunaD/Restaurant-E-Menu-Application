@@ -22,7 +22,7 @@ const CategoryFilter = () => {
 
   return (
     <nav className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 sticky top-15 md:top-18 z-40 transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 py-3">
+      <div className="mx-auto px-4 py-3">
         <div className="flex gap-2 md:gap-3 overflow-x-auto hide-scrollbar pb-1 -mb-1">
           <button
             onClick={() => setActiveCategory("all")}
@@ -33,7 +33,7 @@ const CategoryFilter = () => {
               ${
                 activeCategory === "all"
                   ? "bg-orange-500 text-white shadow-lg shadow-orange-500/30 scale-105"
-                  : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
+                  : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700"
               }
             `}
             aria-pressed={activeCategory === "all"}
@@ -65,7 +65,7 @@ const CategoryFilter = () => {
                 ${
                   activeCategory === category.id
                     ? "bg-orange-500 text-white shadow-lg shadow-orange-500/30 scale-105"
-                    : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
+                    : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700"
                 }
               `}
               aria-pressed={activeCategory === category.id}

@@ -1,10 +1,9 @@
 import { useState, useEffect, useCallback } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import CartButton from "../menu/CartButton";
 import DarkModeToggle from "../menu/DarkModeToggle";
 
 const Header = () => {
-  const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -45,17 +44,6 @@ const Header = () => {
     };
   }, [mobileMenuOpen]);
 
-  const isActive = (path: string) =>
-    location.pathname === path ? "text-orange-700 font-bold" : "text-gray-700 dark:text-gray-200";
-
-  const navLinks = [
-    { path: "/", label: "Home" },
-    { path: "/menu", label: "Menu" },
-    { path: "/custom-cake", label: "Custom Cake" },
-    { path: "/orders", label: "Orders" },
-    { path: "/contact", label: "Contact" },
-  ];
-
   return (
     <nav
       className={`p-3 md:p-4 sticky top-0 z-50 transition-all duration-300 ${
@@ -76,24 +64,10 @@ const Header = () => {
         </div>
 
         {/* Desktop Navigation */}
-        <ul className="hidden lg:flex font-semibold space-x-4 xl:space-x-6 items-center">
-          {navLinks.map((link) => (
-            <li key={link.path}>
-              <Link
-                to={link.path}
-                className={`${isActive(link.path)} hover:text-orange-500 transition-colors duration-200 text-sm xl:text-base py-2 px-1`}
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-          <li>
-            <DarkModeToggle />
-          </li>
-          <li>
-            <CartButton />
-          </li>
-        </ul>
+        <div className="flex items-center gap-4 mx-4">
+          <DarkModeToggle />
+          <CartButton />
+        </div>
 
         {/* Mobile Menu Button */}
         <button
@@ -148,26 +122,6 @@ const Header = () => {
             Delicious Bites
           </span>
         </div>
-
-        <ul className="flex flex-col py-4">
-          {navLinks.map((link) => (
-            <li key={link.path}>
-              <Link
-                to={link.path}
-                className={`block px-6 py-4 text-lg font-medium 
-                           ${isActive(link.path)} 
-                           hover:bg-orange-100 dark:hover:bg-gray-800 
-                           hover:text-orange-500 
-                           transition-colors duration-200
-                           touch-manipulation
-                           active:bg-orange-200 dark:active:bg-gray-700`}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
 
         {/* Mobile Menu Actions */}
         <div className="flex items-center justify-center gap-4 px-6 py-4 border-t border-gray-200 dark:border-gray-700">

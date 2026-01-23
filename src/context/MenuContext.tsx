@@ -1,7 +1,7 @@
-import { useState, useEffect, useCallback, type ReactNode } from 'react';
-import { fetchMenuItems, fetchCategories } from '../api/menuApi';
-import type { MenuItem, Category, MenuContextType } from '../types';
-import { MenuContext } from './menuContextDef';
+import { useState, useEffect, useCallback, type ReactNode } from "react";
+import { fetchMenuItems, fetchCategories } from "../api/menuApi";
+import type { MenuItem, Category, MenuContextType } from "../types";
+import { MenuContext } from "./menuContextDef";
 export { MenuContext };
 
 interface MenuProviderProps {
@@ -14,8 +14,8 @@ export const MenuProvider = ({ children }: MenuProviderProps) => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [activeCategory, setActiveCategory] = useState('all');
-  const [searchQuery, setSearchQuery] = useState('');
+  const [activeCategory, setActiveCategory] = useState("all");
+  const [searchQuery, setSearchQuery] = useState("");
   const [darkMode, setDarkMode] = useState(false);
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
   const [cartCount, setCartCount] = useState(0);
@@ -26,16 +26,18 @@ export const MenuProvider = ({ children }: MenuProviderProps) => {
       try {
         const [menuData, categoryData] = await Promise.all([
           fetchMenuItems(),
-          fetchCategories()
+          fetchCategories(),
         ]);
-        
+
         setAllItems(menuData as MenuItem[]);
         setItems(menuData as MenuItem[]);
         setCategories(categoryData as Category[]);
         setError(null);
       } catch (err) {
-        console.error('Failed to fetch data:', err);
-        setError('Failed to load menu. Please check if the API server is running on http://localhost:3001');
+        console.error("Failed to fetch data:", err);
+        setError(
+          "Failed to load menu. Please check if the API server is running on http://localhost:3001",
+        );
       } finally {
         setLoading(false);
       }
@@ -47,18 +49,18 @@ export const MenuProvider = ({ children }: MenuProviderProps) => {
   useEffect(() => {
     let filteredItems = [...allItems];
 
-    if (activeCategory !== 'all') {
+    if (activeCategory !== "all") {
       filteredItems = filteredItems.filter(
-        item => item.category.toLowerCase() === activeCategory.toLowerCase()
+        (item) => item.category.toLowerCase() === activeCategory.toLowerCase(),
       );
     }
 
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase().trim();
       filteredItems = filteredItems.filter(
-        item => 
+        (item) =>
           item.name.toLowerCase().includes(query) ||
-          item.description.toLowerCase().includes(query)
+          item.description.toLowerCase().includes(query),
       );
     }
 
@@ -66,35 +68,37 @@ export const MenuProvider = ({ children }: MenuProviderProps) => {
   }, [activeCategory, searchQuery, allItems]);
 
   useEffect(() => {
-    const savedDarkMode = localStorage.getItem('darkMode');
+    const savedDarkMode = localStorage.getItem("darkMode");
     if (savedDarkMode !== null) {
       setDarkMode(JSON.parse(savedDarkMode));
     } else {
       // Check system preference
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
       setDarkMode(prefersDark);
     }
   }, []);
 
   useEffect(() => {
     if (darkMode) {
-      document.documentElement.classList.add('dark');
+      document.documentElement.classList.add("dark");
     } else {
-      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.remove("dark");
     }
-    localStorage.setItem('darkMode', JSON.stringify(darkMode));
+    localStorage.setItem("darkMode", JSON.stringify(darkMode));
   }, [darkMode]);
 
   const clearSearch = useCallback(() => {
-    setSearchQuery('');
+    setSearchQuery("");
   }, []);
 
   const toggleDarkMode = useCallback(() => {
-    setDarkMode(prev => !prev);
+    setDarkMode((prev) => !prev);
   }, []);
 
   const addToCart = useCallback(() => {
-    setCartCount(prev => prev + 1);
+    setCartCount((prev) => prev + 1);
   }, []);
 
   const contextValue: MenuContextType = {
@@ -113,13 +117,11 @@ export const MenuProvider = ({ children }: MenuProviderProps) => {
     clearSearch,
     toggleDarkMode,
     setSelectedItem,
-    addToCart
+    addToCart,
   };
 
   return (
-    <MenuContext.Provider value={contextValue}>
-      {children}
-    </MenuContext.Provider>
+    <MenuContext.Provider value={contextValue}>{children}</MenuContext.Provider>
   );
 };
 

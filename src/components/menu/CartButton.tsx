@@ -10,9 +10,9 @@ const CartButton = () => {
   return (
     <button
       onClick={handleClick}
-      className="relative p-2.5 rounded-full bg-orange-100 dark:bg-orange-900/30 
+      className="relative p-2.5 rounded-full bg-orange-100 dark:bg-orange-900 
                  hover:bg-orange-200 dark:hover:bg-orange-900/50 
-                 transition-colors duration-200"
+                 transition-colors duration-200 cursor-pointer"
       aria-label={`Shopping cart with ${cartCount} items`}
     >
       <svg

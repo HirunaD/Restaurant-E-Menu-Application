@@ -7,7 +7,7 @@ const ItemDetail = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { allItems, addToCart, loading: contextLoading } = useMenu();
-  
+
   const [item, setItem] = useState<MenuItem | null>(null);
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
@@ -75,7 +75,9 @@ const ItemDetail = () => {
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-950 flex items-center justify-center">
         <div className="text-center">
-          <p className="text-gray-500 dark:text-gray-400 mb-4">Item not found</p>
+          <p className="text-gray-500 dark:text-gray-400 mb-4">
+            Item not found
+          </p>
           <button
             onClick={() => navigate("/")}
             className="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors"
@@ -98,22 +100,33 @@ const ItemDetail = () => {
   // Get dietary badge color based on type
   const getDietaryColor = (dietary: string): string => {
     const colors: Record<string, string> = {
-      vegetarian: "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400",
-      vegan: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400",
-      "gluten-free": "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400",
-      "dairy-free": "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400",
-      "nut-free": "bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400",
+      vegetarian:
+        "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400",
+      vegan:
+        "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400",
+      "gluten-free":
+        "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400",
+      "dairy-free":
+        "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400",
+      "nut-free":
+        "bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400",
       halal: "bg-teal-100 text-teal-700 dark:bg-teal-900/30 dark:text-teal-400",
-      kosher: "bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400",
+      kosher:
+        "bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400",
     };
-    return colors[dietary.toLowerCase()] || "bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300";
+    return (
+      colors[dietary.toLowerCase()] ||
+      "bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300"
+    );
   };
 
   // Render spicy level indicators
   const renderSpicyLevel = (level: number) => {
     return (
       <div className="flex items-center gap-2">
-        <span className="text-gray-600 dark:text-gray-400 text-sm">Spicy Level:</span>
+        <span className="text-gray-600 dark:text-gray-400 text-sm">
+          Spicy Level:
+        </span>
         <div className="flex items-center gap-1">
           {Array.from({ length: 5 }, (_, i) => (
             <span
@@ -124,7 +137,11 @@ const ItemDetail = () => {
             </span>
           ))}
         </div>
-        {level === 0 && <span className="text-sm text-gray-500 dark:text-gray-400">Not spicy</span>}
+        {level === 0 && (
+          <span className="text-sm text-gray-500 dark:text-gray-400">
+            Not spicy
+          </span>
+        )}
       </div>
     );
   };
@@ -132,21 +149,25 @@ const ItemDetail = () => {
   // Calculate total price
   const calculateTotalPrice = (): number => {
     let total = item.price;
-    
+
     // Add size modifier
     if (selectedSize && item.customizations?.sizes) {
-      const size = item.customizations.sizes.find((s) => s.name === selectedSize);
+      const size = item.customizations.sizes.find(
+        (s) => s.name === selectedSize,
+      );
       if (size) total += size.priceModifier;
     }
-    
+
     // Add add-ons
     if (selectedAddOns.length > 0 && item.customizations?.addOns) {
       selectedAddOns.forEach((addOnName) => {
-        const addOn = item.customizations?.addOns?.find((a) => a.name === addOnName);
+        const addOn = item.customizations?.addOns?.find(
+          (a) => a.name === addOnName,
+        );
         if (addOn) total += addOn.price;
       });
     }
-    
+
     return total * quantity;
   };
 
@@ -155,19 +176,19 @@ const ItemDetail = () => {
     setSelectedAddOns((prev) =>
       prev.includes(addOnName)
         ? prev.filter((name) => name !== addOnName)
-        : [...prev, addOnName]
+        : [...prev, addOnName],
     );
   };
 
   // Handle add to cart
   const handleAddToCart = () => {
     setIsAdding(true);
-    
+
     // Add items to cart (quantity times)
     for (let i = 0; i < quantity; i++) {
       addToCart();
     }
-    
+
     // Show success feedback
     setTimeout(() => {
       setIsAdding(false);
@@ -195,8 +216,18 @@ const ItemDetail = () => {
             onClick={() => navigate(-1)}
             className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-orange-500 dark:hover:text-orange-400 transition-colors"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
             </svg>
             <span className="font-medium">Back to Menu</span>
           </button>
@@ -214,18 +245,20 @@ const ItemDetail = () => {
                 className="w-full h-full object-cover"
               />
             </div>
-            
+
             {/* Popular badge */}
             {item.popular && (
               <div className="absolute top-4 left-4 bg-orange-500 text-white text-sm font-bold px-3 py-1.5 rounded-full shadow-md">
                 🔥 Popular
               </div>
             )}
-            
+
             {/* Availability overlay */}
             {!item.available && (
               <div className="absolute inset-0 bg-black/60 rounded-2xl flex items-center justify-center">
-                <span className="text-white font-bold text-2xl">Currently Unavailable</span>
+                <span className="text-white font-bold text-2xl">
+                  Currently Unavailable
+                </span>
               </div>
             )}
           </div>
@@ -244,7 +277,9 @@ const ItemDetail = () => {
 
             {/* Full Description */}
             <div className="mb-6">
-              <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">Description</h2>
+              <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">
+                Description
+              </h2>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
                 {item.description}
               </p>
@@ -253,17 +288,32 @@ const ItemDetail = () => {
             {/* Preparation Time */}
             {item.preparationTime && (
               <div className="flex items-center gap-2 mb-6 text-gray-600 dark:text-gray-400">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
                 </svg>
-                <span>Preparation time: <strong>{item.preparationTime} minutes</strong></span>
+                <span>
+                  Preparation time:{" "}
+                  <strong>{item.preparationTime} minutes</strong>
+                </span>
               </div>
             )}
 
             {/* Dietary Indicators */}
             {item.dietary && item.dietary.length > 0 && (
               <div className="mb-6">
-                <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">Dietary Information</h2>
+                <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">
+                  Dietary Information
+                </h2>
                 <div className="flex flex-wrap gap-2">
                   {item.dietary.map((diet) => (
                     <span
@@ -278,65 +328,73 @@ const ItemDetail = () => {
             )}
 
             {/* Spicy Level */}
-            <div className="mb-6">
-              {renderSpicyLevel(item.spicyLevel)}
-            </div>
+            <div className="mb-6">{renderSpicyLevel(item.spicyLevel)}</div>
 
             {/* Customization Options - Sizes */}
-            {item.customizations?.sizes && item.customizations.sizes.length > 0 && (
-              <div className="mb-6">
-                <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">Size</h2>
-                <div className="flex flex-wrap gap-3">
-                  {item.customizations.sizes.map((size) => (
-                    <button
-                      key={size.name}
-                      onClick={() => setSelectedSize(size.name)}
-                      className={`px-4 py-2 rounded-lg border-2 font-medium transition-all duration-200
-                        ${selectedSize === size.name
-                          ? "border-orange-500 bg-orange-50 dark:bg-orange-900/20 text-orange-600 dark:text-orange-400"
-                          : "border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:border-orange-300"
+            {item.customizations?.sizes &&
+              item.customizations.sizes.length > 0 && (
+                <div className="mb-6">
+                  <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">
+                    Size
+                  </h2>
+                  <div className="flex flex-wrap gap-3">
+                    {item.customizations.sizes.map((size) => (
+                      <button
+                        key={size.name}
+                        onClick={() => setSelectedSize(size.name)}
+                        className={`px-4 py-2 rounded-lg border-2 font-medium transition-all duration-200
+                        ${
+                          selectedSize === size.name
+                            ? "border-orange-500 bg-orange-50 dark:bg-orange-900/20 text-orange-600 dark:text-orange-400"
+                            : "border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:border-orange-300"
                         }`}
-                    >
-                      {size.name}
-                      {size.priceModifier > 0 && (
-                        <span className="ml-1 text-sm opacity-75">
-                          (+{formatPrice(size.priceModifier)})
-                        </span>
-                      )}
-                    </button>
-                  ))}
+                      >
+                        {size.name}
+                        {size.priceModifier > 0 && (
+                          <span className="ml-1 text-sm opacity-75">
+                            (+{formatPrice(size.priceModifier)})
+                          </span>
+                        )}
+                      </button>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
 
             {/* Customization Options - Add-ons */}
-            {item.customizations?.addOns && item.customizations.addOns.length > 0 && (
-              <div className="mb-6">
-                <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">Add-ons</h2>
-                <div className="flex flex-wrap gap-3">
-                  {item.customizations.addOns.map((addOn) => (
-                    <button
-                      key={addOn.name}
-                      onClick={() => toggleAddOn(addOn.name)}
-                      className={`px-4 py-2 rounded-lg border-2 font-medium transition-all duration-200
-                        ${selectedAddOns.includes(addOn.name)
-                          ? "border-orange-500 bg-orange-50 dark:bg-orange-900/20 text-orange-600 dark:text-orange-400"
-                          : "border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:border-orange-300"
+            {item.customizations?.addOns &&
+              item.customizations.addOns.length > 0 && (
+                <div className="mb-6">
+                  <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">
+                    Add-ons
+                  </h2>
+                  <div className="flex flex-wrap gap-3">
+                    {item.customizations.addOns.map((addOn) => (
+                      <button
+                        key={addOn.name}
+                        onClick={() => toggleAddOn(addOn.name)}
+                        className={`px-4 py-2 rounded-lg border-2 font-medium transition-all duration-200
+                        ${
+                          selectedAddOns.includes(addOn.name)
+                            ? "border-orange-500 bg-orange-50 dark:bg-orange-900/20 text-orange-600 dark:text-orange-400"
+                            : "border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:border-orange-300"
                         }`}
-                    >
-                      {addOn.name}
-                      <span className="ml-1 text-sm opacity-75">
-                        (+{formatPrice(addOn.price)})
-                      </span>
-                    </button>
-                  ))}
+                      >
+                        {addOn.name}
+                        <span className="ml-1 text-sm opacity-75">
+                          (+{formatPrice(addOn.price)})
+                        </span>
+                      </button>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
 
             {/* Quantity Selector */}
             <div className="mb-8">
-              <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">Quantity</h2>
+              <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">
+                Quantity
+              </h2>
               <div className="flex items-center gap-4">
                 <button
                   onClick={() => setQuantity((q) => Math.max(1, q - 1))}
@@ -381,10 +439,22 @@ const ItemDetail = () => {
                   </>
                 ) : (
                   <>
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                    <svg
+                      className="w-6 h-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                      />
                     </svg>
-                    <span>Add to Cart - {formatPrice(calculateTotalPrice())}</span>
+                    <span>
+                      Add to Cart - {formatPrice(calculateTotalPrice())}
+                    </span>
                   </>
                 )}
               </button>

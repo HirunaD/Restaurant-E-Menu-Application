@@ -72,7 +72,7 @@ const Header = () => {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="lg:hidden p-2 rounded-lg hover:bg-orange-300/50 transition-colors duration-200 touch-manipulation"
+          className="md:hidden p-2 rounded-lg hover:bg-orange-300/50 transition-colors duration-200 touch-manipulation"
           aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileMenuOpen}
         >
@@ -103,7 +103,7 @@ const Header = () => {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`lg:hidden fixed inset-0 top-15 md:top-20 bg-black/50 backdrop-blur-sm z-40 transition-opacity duration-300 ${
+        className={`md:hidden fixed inset-0 top-15 md:top-20 bg-black/50 backdrop-blur-sm z-40 transition-opacity duration-300 ${
           mobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setMobileMenuOpen(false)}
@@ -111,7 +111,7 @@ const Header = () => {
 
       {/* Mobile Menu Panel */}
       <div
-        className={`lg:hidden fixed top-15 md:top-20 right-0 w-64 sm:w-72 h-[calc(100vh-60px)] md:h-[calc(100vh-80px)] 
+        className={`md:hidden fixed top-15 md:top-20 right-0 w-64 sm:w-72 h-[calc(100vh-60px)] md:h-[calc(100vh-80px)] 
                    bg-white dark:bg-gray-900 shadow-xl z-50 
                    transform transition-transform duration-300 ease-out
                    ${mobileMenuOpen ? "translate-x-0" : "translate-x-full"}`}
